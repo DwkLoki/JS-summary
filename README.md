@@ -78,7 +78,88 @@ Microsoft tidak mau kalah, dia menciptakan bahasa pemrograman juga diberi nama J
    > Untuk website yang kompleks, file external JavaScript mungkin bukan hanya 1, tapi bisa 3 file, 9 file atau lebih. Biasanya, kode JavaScript ditempatkan di bagian atas,       yakni di dalam tag `<head>`. Jika seluruh file ini diletakkan di bagian `<head>`, bisa saja halaman web tampil “kosong” selama beberapa detik menunggu web browser            selesai mendownload file-file tersebut. Situasi ini dikenal dengan istilah Render-Blocking JavaScript. Solusi dari masalah ini adalah dengan memanggil file external          JavaScript dari bagian bawah tag `<body>`. Dengan demikian, kita memberi kesempatan web browser untuk memproses kode HTML terlebih dahulu, baru kemudian mendownload          file JavaScript. Efeknya, pengujung web bisa langsung melihat tampilan web selama proses ini, tidak hanya halaman kosong.
    > 
    > karena itu, berkaitan dengan masalah performa, beberapa developer web menyarankan meletakkan JavaScript dibagian bawah tag `<body>`, yakni sebelum tag penutup                `</body>`. Tapi ada pengecualian, jika terdapat kode yang harus dijalankan terlebih dahulu (seperti library jQuery), tempatkan di dalam tag `<head>`, agar bisa               langsung dieksekusi.
-     
+
+   Untungnya HTML5 hadir sebagai penyelamat. Dengan atribut **async** dan **defer**, kita bisa mengatur kapan (defer) dan bagaimana (async) file external JavaScript             diproses. Kedua atribut ini memungkinkan penulisan tag `<script>` tidak harus di bawah tag `<body>`.
+
+   Tambahan atribut async dan defer dari HTML5 membawa perubahan terkait posisi terbaik peletakan kode JavaScript. Standar saat ini adalah menempatkan kode JavaScript di        bagian `<head>` dengan tambahan atribut async. Untuk kode JavaScript yang tidak terlalu penting (dan bisa menunggu), tambahkan atribut defer.
+
+#  Aturan Dasar Penulisan (Syntax)
+**statement**, sebutan untuk sebuah baris perintah JavaScript (biasanya diakhiri tanda titik koma)  
+
+**case sensitive**, huruf kapital dan huruf biasa dianggap berbeda  
+
+**whitespace**, berarti karakter “kosong” seperti spasi, tab, atau baris baru (new line) diabaikan dalam JS. Indenting (Penambahan karakter whitespace)  ini memang akan memperbesar ukuran file JavaScript. Tapi keuntungannya jauh lebih banyak. Kode program kita menjadi lebih mudah dibaca.  
+
+**komentar**, kode program yang tidak akan dieksekusi oleh JavaScript. biasanya digunakan untuk membuat dokumentasi atau penjelasan tentang kode program yang ada. atau menonaktifkan beberapa baris kode program (biasanya untuk keperluan debugging).  
+contoh:
+```javascript
+<script>
+   // Ambil setiap element, simpan ke variabel
+   var pesan = document.getElementById("pesan");
+   var username = document.getElementById("username");
+   
+   // Buat regex untuk inputan minimal 6 karakter (digit dan angka)
+   var pattern = /^[A-Za-z0-9]{6,}$/;
+   
+   /* Buat fungsi untuk mengecek username.
+   Fungsi ini dibuat menggunakan regular expression */
+   submit.onclick = function () {
+      if (pattern.test(username.value)) {
+         pesan.innerHTML = "Username sesuai";
+         pesan.className= "betul"; // Artinya username sudah sesuai
+      }
+   };
+</script>
+```
+
+# Variabel dan Konstanta
+Saat menulis kode program, sering kali kita perlu mengelola data masukan (input) dan menghasilkan data baru (output). Agar dapat diproses, data disimpan ke dalam **variabel** atau **konstanta**.  
+
+contoh:  
+
+```javascript
+var namaPanggilan; // deklarasi variabel
+namaPanggilan = "loki"; // assignment: mengisi variabel dengan sebuah nilai menggunakan operator assignment
+
+// inisialisasi variabel: deklarasi variabel dengan langsung memberi nilai awal
+var namaPanggilan = "loki";
+
+// cara baru membuat variabel di ES6
+let namaLengkap = "Dwiky Loki";
+const PI = 3.14;
+```
+
+- variabel dan konstanta = penampung data
+- identifier (penamaan). contoh yg termasuk identifier: variabel, konstanta, function dan object.
+- literal, sebuah nilai yg biasanya dimasukkan ke dalam identifier. ada string literal, numeric literal.
+- karena variabel dan konstanta termasuk identifier, maka harus mengikuti aturan pembuatan identifier.
+   - Bisa terdiri dari huruf, angka, garis bawah “ _ ” (underscore), dan tanda dollar “ $ “ (dollar sign). Selain itu, dianggap sebagai karakter ilegal (tidak boleh              digunakan)
+   - Karakter pertama dari identifier tidak boleh berupa angka. Angka hanya bisa digunakan sebagai karakter kedua dan seterusnya.
+   - Bersifat case sensitive, dimana huruf besar dan kecil dianggap berbeda.
+   - Harus selain dari reserved keyword, yakni kata khusus yang berfungsi sebagai perintah di dalam pemrograman JavaScript, seperti var, while, function, dll
+   ```javascript
+   // Berikut contoh penulisan variabel yang salah:
+   let 9naga; // diawali dengan angka
+   let satu-satu; // terdapat karakter "-"
+   let satu satu; // terdapat spasi
+   let satu%lima; // terdapat karakter "%"
+   let continue; // merupakan reserved keyword
+
+   // Berikut contoh penulisan variabel yang benar:
+   let aa123;
+   let belajar_bahasa_javascript;
+   let jumlahTotal;
+   let $box;
+   let _begin;
+   ```
+- standar pendeklarasian variabel dan konstanta saat ini menggunakan keyword `let` dan `const` bukan keyword `var` (fitur baru ES6)
+- Sedapat mungkin selalu menambahkan keyword let saat membuat variabel. karena jika tidak, bisa mendatangkan bug yg tdk disangka-sangka. Secara teknis, juga ada perbedaan     mendasar berkaitan dengan variabel scope
+- Berbeda dengan variabel yang menggunakan Camel Case, konstanta biasa ditulis menggunakan huruf besar dan garis bawah (underscore) sebagai pemisah kata. Tujuannya agar       mudah dibedakan dengan variabel. Aturan ini hanya kebiasaan programmer JavaScript. Tentu saja tetap bisa membuat konstanta dengan huruf kecil
+  
+# Tipe Data
+
+
+
 
 
 
