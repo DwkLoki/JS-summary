@@ -157,6 +157,88 @@ const PI = 3.14;
 - Berbeda dengan variabel yang menggunakan Camel Case, konstanta biasa ditulis menggunakan huruf besar dan garis bawah (underscore) sebagai pemisah kata. Tujuannya agar       mudah dibedakan dengan variabel. Aturan ini hanya kebiasaan programmer JavaScript. Tentu saja tetap bisa membuat konstanta dengan huruf kecil
   
 # Tipe Data
+Kalo sebelumnya kita belajar bahwa Variabel dan konstanta sebagai wadah untuk menampung data. Dalam JS, data itu sendiri terdiri dari beragam jenis, mulai dari angka, teks, hingga data yang kompleks seperti array dan object.
+
+Agar memudahkan pemrosesan, JavaScript membedakan data menurut sifatnya atau dikenal sebagai tipe data. Secara garis besar, tipe data dalam JavaScript terdiri dari 2 kelompok, yakni **tipe data primitif (primitive type)** dan **tipe data object.**
+
+## Tipe Data Primitive
+Tipe data primitif disebut demikian karena tipe data ini “sederhana”. Di dalam JavaScript terdapat 6 tipe data primitif:
+1. Number  
+   Tipe data number adalah tipe data yang berisikan angka, baik itu angka bulat seperti 1, 5, 1000, -99, maupun angka pecahan seperti 1.55, 3.14, 0.0009. Di dalam              JavaScript, angka bulat dan pecahan digabung ke dalam tipe data number.
+
+   Selain angka “normal”, JavaScript juga mendukung berbagai penulisan angka seperti scientific notation, bilangan desimal, biner, oktal, dan Heksadesimal.
+   
+   > bilangan biner, oktal dan heksadesimal sangat jarang digunakan di dalam web programming.  
+
+   Selain “angka”, JavaScript memiliki 2 nilai yang termasuk tipe data number, yakni NaN dan Infinity. Kedua nilai ini hadir untuk menampung hasil matematika yang “tidak       umum”, seperti contoh berikut:
+    
+    ```javascript
+   let foo;
+    
+   foo = 9 * "a";
+   console.log(foo); // NaN
+    
+   foo = 9 / "a";
+   console.log(foo); // NaN
+    
+   foo = 5 / 0;
+   console.log(foo); // Infinity
+    
+   foo = -5 / 0;
+   console.log(foo); // -Infinity
+   ```
+2. String
+   Tipe data string adalah sebutan untuk data yang berisi teks. selain teks biasa, ada juga escape character, unicode character, template string
+3. Boolean
+   Tipe data Boolean adalah tipe data yang hanya mempunyai dua nilai, yakni true (benar) atau false (salah). Tipe data boolean sering digunakan untuk membuat alur logika       program (control flow).
+4. Null dan Undifined
+   Menyebut null dan undefined sebagai tipe data terasa kurang pas, karena kedua tipe data ini menyatakan “data yang tidak ada”. Null berarti "kosong" sementara undifined 
+   menyatakan data yang tidak terdefinisi
+5. Symbol* (ES6)  
+> operator typeof
+>
+> operator typeof sangat erat dengan pembahasan tentang tipe data. Operator typeof digunakan untuk melihat tipe data dari sebuah variabel. Berikut contoh penggunaan           operator typeof:
+> ```javascript
+> let foo;
+> console.log (typeof foo); // undefined
+>
+> foo = 199;
+> console.log (typeof foo); // number
+>
+> foo = "Belajar JavaScript";
+> console.log (typeof foo); // string
+>
+> foo = false;
+> console.log (typeof foo); // boolean
+>
+> foo = null;
+> console.log (typeof foo); // object
+> ```
+> Yang agak aneh, nilai null dianggap sebagai object. Ini memang sebuah pengecualian di dalam JavaScript.
+
+## Tipe data Object
+Object bisa disebut sebagai tipe data “khusus” yang prilaku dan isinya bermacam-macam. Adapun tipe data object bawaan JavaScript adalah:
+1. Array  
+   Array (dalam bahasa indonesia disebut juga sebagai larik) adalah tipe data yang berisi kumpulan tipe data lain.
+   ```javascript
+   // cara membuat array
+   let siswa = ["Andri", "Joko", "Sukma", "Rina", "Sari"];
+
+   // akses elemen array menggunakan nomor indeks yg dimulai dari 0
+   console.log(siswa[0]); // Andri
+   console.log(siswa[1]); // Joko
+   console.log(siswa[2]); // Sukma
+   console.log(siswa[3]); // Rina
+   console.log(siswa[4]); // Sari
+
+   // mengubah nilai elemen array
+
+   ```
+3. Date
+4. RegExp
+5. Map dan WeakMap* (ES6)
+6. Set dan WeakSet* (ES6)
+
 
 
 
