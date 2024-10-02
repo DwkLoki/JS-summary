@@ -224,6 +224,11 @@ Object bisa disebut sebagai tipe data “khusus” yang prilaku dan isinya berma
    // cara membuat array
    let siswa = ["Andri", "Joko", "Sukma", "Rina", "Sari"];
 
+   // Anggota dari array juga bisa bercampur dengan tipe data lain
+   let baz = ["aku", 999, true, 0.085, null];
+   console.log(baz); // Array [ "aku", 999, true, 0.085, null ]
+
+
    // akses elemen array menggunakan nomor indeks yg dimulai dari 0
    console.log(siswa[0]); // Andri
    console.log(siswa[1]); // Joko
@@ -232,8 +237,27 @@ Object bisa disebut sebagai tipe data “khusus” yang prilaku dan isinya berma
    console.log(siswa[4]); // Sari
 
    // mengubah nilai elemen array
+   siswa[0] = "Dwiky";
+   console.log(siswa) // array ["Dwiky", "Joko", "Sukma", "Rina", "Sari"]
 
+   // array 2 dimensi
+   let foo = [
+               ["sedang","belajar","javascript"],
+               ["selamat","pagi","dunia"],
+               ["a","b","c","d","e"]
+   ];
+   console.log(foo[1][2]); // "dunia"
+   console.log(foo[2][2]); // "c"
+
+   foo[1][1] = "malam";
+   console.log(foo[1]); // Array [ "selamat", "malam", "dunia" ]
+
+   foo[2][5] = "f";
+   foo[2][6] = "g";
+   console.log(foo[2]); // Array [ "a", "b", "c", "d", "e", "f", "g" ]
    ```
+   Tipe data array merupakan salah satu tipe data terpenting di dalam JavaScript. Ketika kita masuk ke pembahasan tentang      DOM, mayoritas element di dalam web browser diakses menggunakan
+array
 3. Date
 4. RegExp
 5. Map dan WeakMap* (ES6)
