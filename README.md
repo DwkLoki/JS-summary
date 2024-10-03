@@ -187,14 +187,14 @@ Tipe data primitif disebut demikian karena tipe data ini “sederhana”. Di dal
    foo = -5 / 0;
    console.log(foo); // -Infinity
    ```
-2. String
+2. String  
    Tipe data string adalah sebutan untuk data yang berisi teks. selain teks biasa, ada juga escape character, unicode character, template string
-3. Boolean
+3. Boolean  
    Tipe data Boolean adalah tipe data yang hanya mempunyai dua nilai, yakni true (benar) atau false (salah). Tipe data boolean sering digunakan untuk membuat alur logika       program (control flow).
-4. Null dan Undifined
+4. Null dan Undifined  
    Menyebut null dan undefined sebagai tipe data terasa kurang pas, karena kedua tipe data ini menyatakan “data yang tidak ada”. Null berarti "kosong" sementara undifined 
    menyatakan data yang tidak terdefinisi
-5. Symbol* (ES6)  
+5. Symbol* (ES6)    
 > operator typeof
 >
 > operator typeof sangat erat dengan pembahasan tentang tipe data. Operator typeof digunakan untuk melihat tipe data dari sebuah variabel. Berikut contoh penggunaan           operator typeof:
@@ -256,12 +256,89 @@ Object bisa disebut sebagai tipe data “khusus” yang prilaku dan isinya berma
    foo[2][6] = "g";
    console.log(foo[2]); // Array [ "a", "b", "c", "d", "e", "f", "g" ]
    ```
-   Tipe data array merupakan salah satu tipe data terpenting di dalam JavaScript. Ketika kita masuk ke pembahasan tentang      DOM, mayoritas element di dalam web browser diakses menggunakan
-array
+   Tipe data array merupakan salah satu tipe data terpenting di dalam JavaScript. Saat masuk ke pembahasan tentang DOM, mayoritas element di dalam web browser                  diakses menggunakan array.
 3. Date
 4. RegExp
 5. Map dan WeakMap* (ES6)
 6. Set dan WeakSet* (ES6)
+
+# Operator Javascript
+Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.   
+1. Operator Aritmatika
+   ```javascript
+   let foo;
+
+   foo = +100;
+   console.log(foo); // 100
+
+   foo = -22;
+   console.log(foo); // -22
+
+   foo = 30 - 5;
+   console.log(foo); // 30
+
+   foo = 3.33 + 9.02;
+   console.log(foo); // 12.35
+
+   foo = 9 * 7;
+   console.log(foo); // 63
+
+   foo = 6 + 8 / 2 + 6;
+   console.log(foo); // 16
+
+   foo = 30 % 7;
+   console.log(foo); // 2
+   ```
+   Urutan ‘kekuatan’ operator juga pengaruh di sini. Operator perkalian dan pembagian lebih kuat daripada operator penambahan dan pengurangan. Untuk menimpa urutan ini,        kita bisa menggunakan tanda kurung.
+2. Operator Increment dan Decrement  
+   Operator increment adalah sebutan untuk penulisan seperti i++. Perintah ini digunakan untuk menaikkan nilai variabel i sebanyak 1 angka. Perintah i++ adalah penulisan       singkat dari i = i + 1.
+
+   Sedangkan operator decrement adalah sebutan untuk penulisan seperti i--. Fungsinya untuk menurunkan nilai variabel i sebesar 1 angka. Perintah i-- merupakan penulisan       singkat dari i = i - 1.
+
+   Posisi peletakan tanda ++ dan -- bisa diawal maupun diakhir variabel, seperti ++i maupun i++. Keduanya berfungsi sama tapi dengan cara eksekusi yang sedikit berbeda.
+   ```javascript
+   let foo;
+
+   foo = 7;
+   console.log(++foo); // 8
+   console.log(foo); // 8
+
+   foo = 7;
+   console.log(foo++); // 7
+   console.log(foo); // 8
+
+   foo = 7;
+   console.log(--foo); // 6
+   console.log(foo); // 6
+
+   foo = 7;
+   console.log(foo--); // 7
+   console.log(foo); // 6
+   ```
+   Operator increment dan decrement ini sering digunakan untuk control structures perulangan.
+3. Operator Perbandingan
+   Operator perbandingan berfungsi untuk memeriksa bagaimana hubungan sebuah nilai dengan nilai lain, apakah sama besar, tidak sama, lebih besar atau lebih kecil. Hasil        akhir dari perbandingan ini berupa tipe data boolean: true (benar) atau false (salah). Operator perbandingan banyak digunakan untuk membuat control flow pada kode           program, contohnya seperti conditional statements dan loops.
+
+   Operator perbandingan terdiri dari: sama dengan (==), identik dengan (===), tidak sama dengan (!=), tidak identik dengan (!==), kurang dari (<), lebih dari (>), kurang      dari atau sama dengan (<=), lebih dari atau sama dengan (>=)
+4. Operator Logika
+   
+7. Operator String
+8. Operator Bitwise
+9. Operator Assignment
+10. Operator Spread
+
+***Beberapa tipe data dalam javascript memiliki operator khusus, sesuai dengan ciri khasnya masing-masing.***  
+
+Seperti, Tipe data number biasanya digunakan bersamaan dengan operator aritmatika. Tipe data string biasanya digunakan dengan operator string concatenation (penyambungan string), dst. Berikut daftar tipe data dan operatornya masing-masing:
+| Tipe Data  | Operator |
+| ---------- | -------- |
+| Number     | Aritmatika |
+| String     | string concatenation |
+| Boolean    | perbandingan & logika |
+
+Yang perlu menjadi perhatian, di dalam JavaScript sebuah tipe data akan berubah menjadi tipe data lain tergantung operator yang digunakan.
+
+
 
 
 
