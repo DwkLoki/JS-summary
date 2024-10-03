@@ -316,11 +316,31 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    console.log(foo); // 6
    ```
    Operator increment dan decrement ini sering digunakan untuk control structures perulangan.
-3. Operator Perbandingan
+3. Operator Perbandingan  
    Operator perbandingan berfungsi untuk memeriksa bagaimana hubungan sebuah nilai dengan nilai lain, apakah sama besar, tidak sama, lebih besar atau lebih kecil. Hasil        akhir dari perbandingan ini berupa tipe data boolean: true (benar) atau false (salah). Operator perbandingan banyak digunakan untuk membuat control flow pada kode           program, contohnya seperti conditional statements dan loops.
 
    Operator perbandingan terdiri dari: sama dengan (==), identik dengan (===), tidak sama dengan (!=), tidak identik dengan (!==), kurang dari (<), lebih dari (>), kurang      dari atau sama dengan (<=), lebih dari atau sama dengan (>=)
-4. Operator Logika
+
+   **Falsy dan Truthy Value**  
+   Ketika nilai non-boolean digunakan dalam konteks boolean, seperti menggunakan operator perbandingan, kondisi pernyataan if, dan loops, nilai tersebut akan dipaksa           menjadi true atau false.
+
+   Berikut daftar falsy value di dalam JavaScript:  
+   • false  
+   • null  
+   • undefined  
+   • 0  
+   • NaN  
+   • '' (string kosong)  
+   • "" (string kosong)  
+   
+   Selain nilai-nilai diatas, akan di konversi menjadi truthy value, termasuk:  
+   • true  
+   • { } (object kosong)  
+   • [ ] (array kosong)  
+   • 42 (sembarang angka, termasuk angka negatif dan pecahan, selain angka 0)  
+   • "foo" (sembarang string, selama bukan string kosong)  
+   • infinity (termasuk -infinity)  
+5. Operator Logika
    
 7. Operator String
 8. Operator Bitwise
@@ -329,14 +349,13 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
 
 ***Beberapa tipe data dalam javascript memiliki operator khusus, sesuai dengan ciri khasnya masing-masing.***  
 
-Seperti, Tipe data number biasanya digunakan bersamaan dengan operator aritmatika. Tipe data string biasanya digunakan dengan operator string concatenation (penyambungan string), dst. Berikut daftar tipe data dan operatornya masing-masing:
+Seperti, Tipe data number biasanya digunakan bersamaan dengan operator aritmatika. Tipe data string biasanya digunakan dengan operator string concatenation (penyambungan string), dst. Yang perlu menjadi perhatian, di dalam JavaScript sebuah tipe data akan berubah menjadi tipe data lain tergantung operator yang digunakan. Berikut daftar tipe data dan operatornya masing-masing:
 | Tipe Data  | Operator |
 | ---------- | -------- |
 | Number     | Aritmatika |
 | String     | string concatenation |
 | Boolean    | perbandingan & logika |
 
-Yang perlu menjadi perhatian, di dalam JavaScript sebuah tipe data akan berubah menjadi tipe data lain tergantung operator yang digunakan.
 
 
 
