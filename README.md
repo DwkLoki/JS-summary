@@ -533,10 +533,60 @@ console.log(total); // 100000
 Operator conditional mempersingkat penulisan if else, namun seperti yang anda lihat, perlu dipahami dengan seksama.
 
 ## Loops
+Perulangan atau dalam bahasa inggris disebut sebagai loop, adalah struktur kode program yang digunakan untuk mengulang beberapa baris perintah. Dengan menggunakan perulangan, sangat memudahkan kita menjalankan perintah yang sama secara terus menerus. 
+
+Di dalam JavaScript terdapat 3 buah struktur perulangan, yakni for, while, dan do while. Kita akan mulai dari perulangan for terlebih dahulu.
+
 ### For
+```javascript
+// kode berikut akan menampilkan teks "haloooo dwiky" pada menu console sebanyak 10 kali
+for (let i = 0; i < 10; i++) {
+   console.log("haloooo dwiky");
+}
+
+// atau bisa juga seperti ini
+for (let i = 1; i <= 10; i++) {
+   console.log("haloooo dwiky");
+}
+
+// bagian start dan increment bisa dipindahkan di tempat lain
+// penulisan seperti ini boleh dan valid, tapi memang jarang digunakan.
+let i = 0;
+
+for (; i < 10;) {
+   console.log("haloooo dwiky");
+   i++;
+}
+``` 
+**PERULANGAN BERSARANG (NESTED LOOP)**  
+Struktur seperti ini diperlukan untuk kode program yang cukup kompleks. Karena kompleksitasnya inilah ***sering dijadikan soal-soal latihan programming***.
+```javascript
+for (let i = 1; i <= 4; i++) {
+   for (let j = 1; j <= 2; j++) {
+      console.log("variabel i bernilai: "+ i +", variabel j bernilai: "+j);
+   }
+}
+```
+***Nested loop*** ini relatif jarang digunakan, tapi bukan tidak mungkin anda akan menemui masalah yang hanya bisa diselesaikan menggunakan nested loop.
+
+**INFINITY LOOP**  
+Infinity loop adalah perulangan yang berjalan terus menerus dan tidak akan pernah selesai. Ini biasanya terjadi karena kesalahan dari kita, programmer yang membuat kode program.
+```javascript
+// perulangan akan terus berjalan karena kondisi i > 10 selalu bernilai true
+for (let i = 20; i > 10; i++) {
+   console.log("Hello Indonesia");
+}
+
+// bagian increment harus diperbaiki agar loopingnya memiliki stopping condition
+for (let i = 20; i > 10; i--) {
+   console.log("Hello Indonesia");
+}
+```
+
+**PERINTAH BREAK DAN CONTINUE**  
+KJKLJKLJK
 ### while
 ### do while
-### for of
 
 
 
