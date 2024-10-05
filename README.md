@@ -321,7 +321,9 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
 
    Operator perbandingan terdiri dari: sama dengan (==), identik dengan (===), tidak sama dengan (!=), tidak identik dengan (!==), kurang dari (<), lebih dari (>), kurang      dari atau sama dengan (<=), lebih dari atau sama dengan (>=)
 
-   **Falsy dan Truthy Value**  
+   Pada oprator perbandingan, prioritaskan menggunakan operator identik dengan (===) daripada sama dengan (==).
+
+   **FALSY DAN TRUTHY VALUE**  
    Ketika nilai non-boolean digunakan dalam konteks boolean, seperti menggunakan operator perbandingan, kondisi pernyataan if, dan loops, nilai tersebut akan dipaksa           menjadi true atau false.
 
    Berikut daftar falsy value di dalam JavaScript:  
@@ -340,12 +342,98 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    • 42 (sembarang angka, termasuk angka negatif dan pecahan, selain angka 0)  
    • "foo" (sembarang string, selama bukan string kosong)  
    • infinity (termasuk -infinity)  
-5. Operator Logika
+4. Operator Logika
+   Operator logika digunakan untuk membandingkan 2 kondisi logika, yakni logika benar (true) dan logika salah (false). Operator logika terdiri dari  
+   • && (and)  
+   • || (or)  
+   • ! (not)  
+   Operator && memiliki kekuatan yang lebih tinggi daripada ||. Untuk operasi logika, JavaScript menjalankan perintah tersebut dari kiri ke kanan, kecuali jika terdapat        operator && dan || dalam 1 operasi (operator && akan dijalankan terlebih dahulu).
+
+   **KONSEP SHORT-CIRCUIT EVALUATION**  
+   Ketika memproses operasi logika yang cukup panjang, JavaScript mengunakan konsep shortcircuit evaluation. Maksudnya, jika dengan memeriksa 1 nilai saja hasil operasi        tersebut sudah bisa diketahui, nilai - nilai lain tidak akan diperiksa.
+   ```javascript
+   let foo;
+
+   // proses berjalan hanya sampai "true ||" krn dapat dipastikan apapun nilai setelah operator ||, hasil operasinya akan "true" 
+   foo = true || false || true;
+   console.log(foo); // true
+
+   // demikian juga dengan operasi berikut
+   foo = false && true && true;
+   console.log(foo); // false
+   ```
+   Fitur short-circuit evaluation ini cukup penting dipahami karena sering digunakan dalam kode program lanjutan, misalnya dalam contoh berikut:
+   ```javascript
+   // fungsi alert() baru akan berjalan jika variabel bar bernilai true.
+   let bar = false;
+   let foo = bar && alert("Hello Indonesia");
+
+   // karena JavaScript mendeteksi variabel bar bernilai true, sedangkan operatornya adalah &&.
+   // Short-circuit tidak terjadi karena JavaScript harus memeriksa nilai berikutnya.
+   // hasilnya fungsi alert dijalankan
+   let bar = true;
+   let foo = bar && alert("Hello Indonesia");
+   ```
+   Fitur short-circuit evaluation untuk operator logika ini juga sering digunakan ketika membuat trik khusus, dimana tipe data yang dibandingkan bukan boolean.
+   **OPERASI LOGIKA NON BOOLEAN**
+   Salah satu fitur unik di dalam JavaScript adalah, jika operasi logika dijalankan untuk data non boolean, hasil akhir dari operasi ini juga bukan berupa boolean, tapi        nilai terakhir dari pemrosesan tersebut.
+   ```javascript
+   let foo = "Duniailkom" || "JavaScript";
+   console.log(foo); // Duniailkom
    
-7. Operator String
-8. Operator Bitwise
-9. Operator Assignment
-10. Operator Spread
+   let foo = "Duniailkom" && "JavaScript";
+   console.log(foo); // JavaScript
+   
+   let foo = true || "JavaScript";
+   console.log(foo); // true
+   
+   let foo = false || "JavaScript";
+   console.log(foo); // JavaScript
+   
+   let foo = "JavaScript" && false;
+   console.log(foo); // false
+   
+   let foo = false && "JavaScript";
+   console.log(foo); // false
+   
+   let foo = false || false && true || "JavaScript";
+   console.log(foo); // JavaScript
+   
+   let foo = true || false && true || "JavaScript";
+   console.log(foo); // true
+   ```
+   Konsep operasi logika non boolean di JavaScript ini sangat unik dan jarang ditemukan dalam bahasa pemrograman lain.
+5. Operator String
+   Dalam JavaScript terdapat 1 operator yang digunakan untuk penyambungan string (string concatenation). Operator ini menggunakan karakter tambah ( + ). Jika data yang akan    disambung bukan bertipe string, akan dikonversi menjadi string secara otomatis.
+
+   Operator + harus digunakan jika kita ingin menyambung string dengan sebuah variabel.
+
+   Dengan fitur template string dari ECMAScript 6, kita bisa menulis semuanya di dalam string (menggabung string dan variabel dalam satu penulisan).
+   
+   **PENYAMBUNGAN STRING ATAU PENAMBAHAN ANGKA**
+   Di dalam JavaScript, operator penyambungan string dan penambahan angka (aritmatika) samasama menggunakan tanda tambah ( + ). Namun operator string lebih didahulukan.
+   ```javascript
+   let foo;
+   
+   foo = 10 + 10 + 9;
+   console.log(foo); // 29
+   
+   foo = '10' + 10 + 9;
+   console.log(foo); // 10109
+   
+   foo = 10 + '10' + 9;
+   console.log(foo); // 10109
+   
+   foo = 10 + 10 + '9';
+   console.log(foo); // 209
+   ```
+6. Operator Bitwise
+7. Operator Assignment
+   Operator assignment adalah operator yang digunakan untuk memasukkan nilai ke dalam sebuah variabel.
+8. Operator Spread (ES6)
+   Operator ini digunakan untuk berbagai keperluan yang berhubungan dengan array, salah satunya untuk menggabungkan array. Spread operator menggunakan tanda titik tiga         kali (…), kemudian diikuti dengan nama variabel.
+
+   Selain untuk menggabungkan array, spread operator ini juga bisa digunakan untuk berbagai hal lain, misalnya di dalam function.
 
 ***Beberapa tipe data dalam javascript memiliki operator khusus, sesuai dengan ciri khasnya masing-masing.***  
 
