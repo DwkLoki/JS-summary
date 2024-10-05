@@ -444,7 +444,99 @@ Seperti, Tipe data number biasanya digunakan bersamaan dengan operator aritmatik
 | String     | string concatenation |
 | Boolean    | perbandingan & logika |
 
+# Struktur Logika dan Perulangan
+Control flow in programming is the order in which a program's instructions are executed, and how a program moves from one statement to another. 
 
+Control flow is guided by control structures, such as:
+- Conditional statements: Use conditions like "if," "else if," and "else" to execute specific code blocks based on whether a condition is true or false.
+- Loops: Repeat code until a condition is met.
+- Function or method calls: Organize and reuse code.
+ 
+By default, code in a program runs sequentially from top to bottom, one line at a time. However, control structures can divert this flow. Pada bab ini kita akan mempelajari salah 2 control structures pada javascript yaitu conditional statements dan loops (struktur logika dan perulangan).
+
+## Conditional statements
+Use conditions like "if," "else if," and "else" to execute specific code blocks based on whether a condition is true or false.
+```javascript
+let username = 22.3;
+
+if (typeof username === "string") {
+   console.log("Username string");
+}
+else if (typeof username === "number") {
+   console.log("Username angka");
+}
+else {
+   console.log("Username bukan string dan angka");
+}
+
+// nested if
+let foo = 7;
+console.log("nilai foo = "+ foo);
+
+if (typeof foo === "number") {
+   console.log("foo bertipe number");
+   if (foo >= 10) {
+      console.log("nilai foo besar dari 10");
+   } else {
+      console.log("nilai foo kecil dari 10");
+   }
+} else if (typeof foo === "string") {
+   console.log("foo bertipe string");
+} else {
+   console.log("foo bukan bertipe number maupun string");
+}
+
+// switch case
+let situs = "twitter";
+
+switch (situs) {
+   case "google":
+      console.log('<a href="http://www.google.com">Situs Google<a>');
+      break;
+   case "facebook":
+      console.log('<a href="http://www.facebook.com">Situs Facebook<a>');
+      break;
+   case "twitter":
+      console.log('<a href="http://www.twitter.com">Situs Twitter<a>');
+      break;
+   case "duniailkom":
+      console.log('<a href="http://www.duniailkom.com">Situs Duniailkom<a>');
+      break;
+   default:
+      console.log("Situs tidak terdaftar");
+}
+```
+Secara garis besar, setiap kode program yang dibuat dengan switch bisa dikonversi menjadi if else. Tapi sebaliknya belum tentu. Struktur switch hanya cocok untuk kondisi sederhana seperti mengecek apakah nilai variabel sama dengan string tertentu. Jika kondisi yang diperiksa sudah gabungan, misalnya menggunakan operator && atau ||, kita tidak bisa lagi menggunakan switch. Ini pula yang menjadi alasan struktur if lebih banyak digunakan daripada switch.
+
+### Operator Conditional
+JavaScript memiliki 1 operator conditional yang mirip seperti struktur if else.  
+```javascript
+let jumlah_barang = 1000;
+let total;
+
+if (jumlah_barang > 500) {
+   total = jumlah_barang * 100;
+} else {
+   total = jumlah_barang * 150;
+}
+
+console.log(total); // 100000
+
+// Jika menggunakan operator conditional, kode program diatas bisa diubah menjadi seperti ini:
+let jumlah_barang = 501;
+let total;
+
+total = jumlah_barang > 500? jumlah_barang * 100 : jumlah_barang * 150;
+
+console.log(total); // 100000
+```
+Operator conditional mempersingkat penulisan if else, namun seperti yang anda lihat, perlu dipahami dengan seksama.
+
+## Loops
+### For
+### while
+### do while
+### for of
 
 
 
