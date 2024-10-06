@@ -582,11 +582,81 @@ for (let i = 20; i > 10; i--) {
    console.log("Hello Indonesia");
 }
 ```
-
 **PERINTAH BREAK DAN CONTINUE**  
-KJKLJKLJK
-### while
-### do while
+Perintah ***break*** dan ***continue*** digunakan untuk menghentikan sebuah perulangan sebelum waktunya, atau dengan kata lain perulangan berhenti secara prematur.
+```javascript
+// perulangan berhenti saat i = 5. yg tereksekusi hanya i = 1 hingga 4
+for (var i = 1; i <= 10; i++) {
+   if (i === 5) {
+      break;
+   }
+   console.log("Hello JavaScript " + i);
+}
+
+// perulangan i = 5 diskip, kemudian perulangan kembali dieksekusi sampai selesai
+for (var i = 1; i <= 10; i++) {
+   if (i === 5) {
+      continue;
+   }
+   console.log("Hello JavaScript " + i);
+}
+```
+### while  
+Pada prisipnya, perulangan while cocok digunakan untuk situasi dimana kita tidak tau berapa banyak perulangan yang mesti dijalankan. Strukturnya kurang lebih seperti perulangan for. Perulangan ini biasanya digunakan untuk proses menampilkan data yang digenerate secara dinamis. Misalnya kita membuat program yang mengambil suatu data dari situs facebook (menggunakan API - Application Programming Interface). Kita tidak tau berapa banyak baris tabel yang ingin diambil. Dalam situasi seperti ini, perulangan while bisa digunakan, dan tidak bisa menggunakan perulangan for (dulunya. sebelum ada ES6). 
+```javascript
+let foo = true;
+
+while (foo) {
+   statement;
+   if (condition) {
+      foo = false;
+   }
+}
+```
+Disini saya memiliki variabel foo yang berfungsi sebagai penentu perulangan. Variabel foo ini biasa disebut sebagai flag (bahasa inggris: bendera), karena jalan atau tidaknya perulangan bergantung kepada foo apakah berisi true atau false. Pada awal kode program, foo diisi true. Perulangan langsung berjalan karena saya tidak membuat kondisi apapun, tapi langsung menulis while (foo). Sekilas tampak akan terjadi infinity loop, karena kondisi while (true) akan selalu terpenuhi. Akan tetapi dalam kode program terdapat kondisi if:
+```javascript
+if (condition) {
+   foo = false;
+}
+```
+Jika condition untuk if ini terpenuhi, kita ubah nilai flag foo menjadi false, sehingga perulangan akan berhenti.
+
+Secara umum, setiap perulangan for bisa dikonversi menjadi perulangan while, tapi tidak sebaliknya. sehingga perulangan for lebih sering digunakan.
+### do while  
+Perulangan do while sangat mirip seperti perulangan while. Bedanya, dalam perulangan do while, kondisi di cek diakhir block perulangan.
+```javascript
+let i = 1;
+
+do {
+   console.log("Hello Indonesia");
+   i++;
+} while (i <= 10);
+```
+Konsekuensi dari pengecekan yang dilakukan di akhir adalah, block perulangan setidaknya akan diproses 1 kali, walaupun kondisi tersebut sudah tidak dipenuhi sejak awal. Dalam prakteknya, Kita mungkin bakal jarang menemukan aplikasi dari do while. Kita akan banyak menggunakan perulangan for dan while.
+
+---
+### Menampilkan Element Array Dengan Perulangan.
+Salah satu penggunaan terbanyak dari perulangan adalah untuk menampilkan element array.
+```javascript
+let siswa = ["Andri", "Joko", "Sukma", "Rina", "Sari"];
+let jumlah_siswa = siswa.length;
+
+console.log ("Jumlah siswa = " + jumlah_siswa);
+
+// Menampilkan element array menggunakan perulangan for biasa
+for (let i = 0; i < jumlah_siswa; i++){
+   console.log(siswa[i]);
+}
+
+// Menampilkan element array menggunakan perulangan for of (ES6)
+for (let i of siswa) {
+   console.log(i);
+}
+
+/* jika menggunakan "for of" kita tidak memiliki cara untuk mengakses nilai index dari array tersebut.
+Jika anda butuh mengakses index array, terpaksa menggunakan perulangan for biasa */
+```
+
 
 
 
