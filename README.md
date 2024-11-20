@@ -342,7 +342,7 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    • 42 (sembarang angka, termasuk angka negatif dan pecahan, selain angka 0)  
    • "foo" (sembarang string, selama bukan string kosong)  
    • infinity (termasuk -infinity)  
-4. Operator Logika
+4. Operator Logika  
    Operator logika digunakan untuk membandingkan 2 kondisi logika, yakni logika benar (true) dan logika salah (false). Operator logika terdiri dari  
    • && (and)  
    • || (or)  
@@ -375,7 +375,8 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    let foo = bar && alert("Hello Indonesia");
    ```
    Fitur short-circuit evaluation untuk operator logika ini juga sering digunakan ketika membuat trik khusus, dimana tipe data yang dibandingkan bukan boolean.
-   **OPERASI LOGIKA NON BOOLEAN**
+   
+   **OPERASI LOGIKA NON BOOLEAN**  
    Salah satu fitur unik di dalam JavaScript adalah, jika operasi logika dijalankan untuk data non boolean, hasil akhir dari operasi ini juga bukan berupa boolean, tapi        nilai terakhir dari pemrosesan tersebut.
    ```javascript
    let foo = "Duniailkom" || "JavaScript";
@@ -403,14 +404,14 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    console.log(foo); // true
    ```
    Konsep operasi logika non boolean di JavaScript ini sangat unik dan jarang ditemukan dalam bahasa pemrograman lain.
-5. Operator String
+6. Operator String  
    Dalam JavaScript terdapat 1 operator yang digunakan untuk penyambungan string (string concatenation). Operator ini menggunakan karakter tambah ( + ). Jika data yang akan    disambung bukan bertipe string, akan dikonversi menjadi string secara otomatis.
 
    Operator + harus digunakan jika kita ingin menyambung string dengan sebuah variabel.
 
    Dengan fitur template string dari ECMAScript 6, kita bisa menulis semuanya di dalam string (menggabung string dan variabel dalam satu penulisan).
    
-   **PENYAMBUNGAN STRING ATAU PENAMBAHAN ANGKA**
+   **PENYAMBUNGAN STRING ATAU PENAMBAHAN ANGKA**  
    Di dalam JavaScript, operator penyambungan string dan penambahan angka (aritmatika) samasama menggunakan tanda tambah ( + ). Namun operator string lebih didahulukan.
    ```javascript
    let foo;
@@ -427,10 +428,10 @@ Operator digunakan untuk memproses data yang sudah diinput ke dalam JavaScript.
    foo = 10 + 10 + '9';
    console.log(foo); // 209
    ```
-6. Operator Bitwise
-7. Operator Assignment
+7. Operator Bitwise
+8. Operator Assignment
    Operator assignment adalah operator yang digunakan untuk memasukkan nilai ke dalam sebuah variabel.
-8. Operator Spread (ES6)
+9. Operator Spread (ES6)
    Operator ini digunakan untuk berbagai keperluan yang berhubungan dengan array, salah satunya untuk menggabungkan array. Spread operator menggunakan tanda titik tiga         kali (…), kemudian diikuti dengan nama variabel.
 
    Selain untuk menggabungkan array, spread operator ini juga bisa digunakan untuk berbagai hal lain, misalnya di dalam function.
@@ -656,6 +657,109 @@ for (let i of siswa) {
 /* jika menggunakan "for of" kita tidak memiliki cara untuk mengakses nilai index dari array tersebut.
 Jika anda butuh mengakses index array, terpaksa menggunakan perulangan for biasa */
 ```
+
+# Function
+A function in JavaScript is **a reusable block of code that performs a specific task.** You define it once, and then you can run (or “call”) it whenever you need that task done in your program. In JavaScript, functions are first-class objects, because they can be passed to other functions, returned from functions, and assigned to variables and properties. 
+
+> A programming language is said to have First-class functions when functions in that language are treated like any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
+```javascript
+// format dasar pembuatan function
+function function_name (argument1, argument2,...) {
+   statement;
+   statement;
+   return value;
+}
+```
+
+Argument adalah variabel yang berfungsi sebagai nilai input ke dalam function. Perintah return digunakan sebagai output function. Penulisan argument dan perintah return bersifat opsional dan boleh tidak ditulis.
+
+## Membuat dan Memanggil Function
+```javascript
+// function declaration
+function pagi(){
+   console.log("Selamat Pagi");
+   console.log("Good Morning");
+   console.log("Ohayou Gozaimasu");
+   console.log("Buenos Dias");
+}
+
+// memanggil/menjalankan function
+/*Menjalankan fungsi dengan cara seperti ini dikenal dengan istilah
+memanggil fungsi (calling a function). Istilah lain adalah running,
+executing, invoking, atau dispatching a function.*/
+pagi();
+```
+
+## Mengembalikan Nilai Function
+```javascript
+function pagi(){
+   return "Selamat Pagi";
+}
+
+// cara lain
+function pagi(){
+ return "Selamat Pagi";
+}
+
+let salam = pagi();
+console.log(salam); // "Selamat Pagi"
+
+// atau bisa juga begini
+function pagi(){
+   return "Selamat Pagi";
+}
+
+console.log(pagi());
+```
+
+Selain mengembalikan nilai, efek lain dari perintah return adalah, akan langsung menghentikan function tersebut, seperti contoh berikut:
+```javascript
+function pagi(){
+   return "Selamat Pagi";
+   console.log ("Good Morning"); // tidak akan pernah di eksekusi
+}
+
+console.log(pagi()); // "Selamat Pagi"
+```
+
+kita juga bisa mengembalikan nilai dalam bentuk variabel
+```javascript
+function pagi(){
+   let salam = "Selamat Pagi";
+   return salam;
+}
+
+console.log(pagi()); // "Selamat Pagi"
+```
+
+Salah satu aturan dari perintah return adalah, kita hanya boleh mengembalikan 1 nilai saja, apakah itu 1 string, maupun 1 variabel. Jadi, bagaimana jika nilai yang dikembalikan ada banyak? ***Kita bisa memanfaatkan array***
+```javascript
+function pagi(){
+   let salamPagi = ["Selamat Pagi", "Good Morning", "Ohayou Gozaimasu", "Buenos Dias" ];
+   return salamPagi;
+}
+
+let salam = pagi();
+console.log(salam);
+// Array [ "Selamat Pagi", "Good Morning", "Ohayou Gozaimasu", "Buenos Dias" ]
+```
+
+## Argument Function
+Fitur berikutnya dari function adalah argument, yakni mengirim satu atau beberapa nilai ke dalam function untuk diproses.
+```javascript
+function pagi(siapa){
+   return "Selamat Pagi " + siapa;
+}
+
+console.log(pagi("Jakarta")); // Selamat Pagi Jakarta
+console.log(pagi("Bandung")); // Selamat Pagi Bandung
+console.log(pagi("Makassar")); // Selamat Pagi Makassar
+```
+
+JavaScript tidak membatasi berapa banyak argument yang bisa dikirim, selama nilai tersebut sesuai dengan banyaknya input yang diberikan. jika sebuah function butuh 3 argument sementara hanya menginput 2, nilai argument ke 3 secara default bernilai "undefined". jika sebuah function butuh 3 argument sementara kita memanggil lebih banyak argument dari yg dibutuhkan seperti 4, 5 dan seterusnya, nilai argument yg lain akan diskip.
+
+Argument function mirip seperti variabel, tapi kita tidak perlu menulis keyword var.
 
 
 
