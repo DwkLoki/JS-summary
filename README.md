@@ -676,7 +676,7 @@ Argument adalah variabel yang berfungsi sebagai nilai input ke dalam function. P
 
 ## Membuat dan Memanggil Function
 ```javascript
-// function declaration
+// function declarations
 function pagi(){
    console.log("Selamat Pagi");
    console.log("Good Morning");
@@ -689,6 +689,58 @@ function pagi(){
 memanggil fungsi (calling a function). Istilah lain adalah running,
 executing, invoking, atau dispatching a function.*/
 pagi();
+```
+
+cara lain mendeklarasikan sebuah function
+```javascript
+// krn function merupakan first-class object, kita bisa melakukan ini
+let hitung = function rata2(a,b) {
+   return (a + b)/2;
+};
+
+console.log(hitung(4,8)); // 6
+```
+
+Yang diisi adalah pendefenisian fungsi, bukan hasil pemanggilan fungsi. Hasilnya, variabel hitung seolah-olah menjadi function rata2(). Saya bisa memanggil function
+hitung(4,8), yang sama artinya dengan rata2(4,8). mendefenisikan dengan cara seperti itu disebut function expressions. Function Expression nantinya banyak digunakan untuk membuat JavaScript Object.
+
+Jika diperhatikan lagi, fungsi diatas memiliki 2 nama, yakni hitung() dan rata2(). Namun ketika kita memanggil fungsi rata2(), hasilnya akan error:
+```javascript
+let hitung = function rata2(a,b) { return (a + b)/2; };
+
+console.log(hitung(4,8)); // 6
+console.log(rata2(4,8)); // ReferenceError: rata2 is not defined
+```
+
+Karena itu, JavaScript membolehkan kita menghapus nama rata2(), menjadi seperti berikut:
+```javascript
+let hitung = function (a,b) { return (a + b)/2; };
+
+console.log(hitung(4,8)); // 6
+```
+
+Cara penulisan fungsi “tanpa nama” seperti ini dikenal sebagai Anonymous Functions. Di dalam library JavaScript seperti jQuery, cara penulisan ini sering dilakukan.
+
+Arrow function (fitur ES6) sebagai alternatif penulisan anonymous function.
+```javascript
+let hitung = (a,b) => { return (a + b)/2; };
+
+console.log(hitung(4,8)); // 6
+```
+Mungkin anda sempat kepikiran, buat apa repot-repot menulis function menggunakan function expression maupun arrow function? Kenapa kita tidak menulis function seperti biasa? Toh ujung-ujungnya juga dipanggil menggunakan nama function. Penulisan function expression akan banyak dipakai jika kita sudah masuk ke JavaScript Object.
+
+Fitur kedua dari function sebagai first-class object adalah, kita bisa mengirim function sebagai argument.
+```javascript
+function rata2(a,b) {
+   return (a + b)/2;
+}
+
+function tambah(c,d) {
+   return c + d(4,8); // variabel d harus berperilaku sama dengan fungsi rata2
+}
+
+var hasil = tambah(6, rata2);
+console.log(hasil); // 12
 ```
 
 ## Mengembalikan Nilai Function
@@ -760,6 +812,188 @@ console.log(pagi("Makassar")); // Selamat Pagi Makassar
 JavaScript tidak membatasi berapa banyak argument yang bisa dikirim, selama nilai tersebut sesuai dengan banyaknya input yang diberikan. jika sebuah function butuh 3 argument sementara hanya menginput 2, nilai argument ke 3 secara default bernilai "undefined". jika sebuah function butuh 3 argument sementara kita memanggil lebih banyak argument dari yg dibutuhkan seperti 4, 5 dan seterusnya, nilai argument yg lain akan diskip.
 
 Argument function mirip seperti variabel, tapi kita tidak perlu menulis keyword var.
+
+### Default Argument
+Default argument adalah mempersiapkan nilai awal untuk argument. Dengan tujuan, jika argument ini tidak diinput, nilai awal akan digunakan. Kenapa harus diberikan nilai awal? karena jika sebuah argument tidak diisi, JavaScript akan memberikan nilai undefined (seperti contoh kita sebelum ini)
+
+Fitur default argument seperti ini baru tersedia di ECMAScript 6. Syarat lain dari default argument adalah argument dengan nilai default harus diletakkan sebagai
+argument terakhir.
+```javascript
+//  contoh penggunaan default argument
+function rata2(a = 10, b = 10, c = 10, d = 10){
+   let hasil = (a + b + c + d)/4;
+   return hasil;
+}
+
+let nilai1 = rata2();
+console.log(nilai1); // 10
+
+let nilai2 = rata2(20);
+console.log(nilai2); // 12.5
+
+let nilai3 = rata2(20, 5, 30);
+console.log(nilai3); // 16.25
+
+// contoh lain penggunaan default argument
+function rata2(a, b, c = 10, d = 10){
+   let hasil = (a + b + c + d)/4;
+   return hasil;
+}
+
+let nilai1 = rata2(20);
+console.log(nilai1); // NaN karena fungsi rata2() butuh minimal 2 argumen (2 argumen terakhir bersifat opsional).
+
+let nilai2 = rata2(20, 40);
+console.log(nilai2); // 20
+
+let nilai3 = rata2(5, 5, 5, 5);
+console.log(nilai3); // 5
+
+// Bagaimana jika default argument ini ditempatkan di awal?
+function rata2(a = 10, b = 10, c, d){
+   let hasil = (a + b + c + d)/4;
+   return hasil;
+}
+
+let nilai1 = rata2(20);
+console.log(nilai1); // NaN
+
+let nilai2 = rata2(20, 40);
+console.log(nilai2); // NaN
+
+let nilai3 = rata2(5, 5, 5, 5);
+console.log(nilai3); // 5
+
+// Dari sisi logika program, meletakkan default argument diawal tidak akan berfungsi, 
+// karena mau tidak mau kita harus menulis seluruh argument.
+
+// bisa diakali dengan cara berikut
+function rata2(a = 10, b = 10, c, d){
+   let hasil = (a + b + c + d)/4;
+   return hasil;
+}
+
+let nilai3 = rata2(undefined, undefined, 5, 5);
+console.log(nilai3); // 7.5
+
+/* saya menuliskan nilai undefined pada saat pemanggilan fungsi.
+Dengan ditulis seperti itu, argument a dan b akan mengambil nilai default */
+
+// Inilah sedikit fungsi dari nilai undefined di dalam pemrograman JavaScript.
+```
+
+### Arguments Object
+Arguments object adalah sebutan untuk ‘object’ yang menampung seluruh argument pada saat pemanggilan function. Arguments object sebenarnya lebih mirip seperti array. Oleh karena itu boleh dibilang bahwa kita sedang membahas tentang array khusus bernama arguments.
+
+```javascript
+function angka(){
+   console.log(arguments[0]);
+   console.log(arguments[1]);
+   console.log(arguments[2]);
+   console.log(arguments[3]);
+}
+
+angka(4, 8, 3, 7);
+```
+
+setiap argument yang saya tulis bisa diakses menggunakan array arguments, dimana argument pertama disimpan ke dalam arguments[0], argument kedua ke dalam arguments[1], dst. Array arguments ini tersedia di dalam setiap function JavaScript dan bisa diakses dari dalam function tersebut.
+
+```javascript
+function rata2(){
+   let totalArg = arguments.length;
+   let hasil = 0;
+
+   for (let i = 0; i < totalArg; i++){
+      hasil = hasil + arguments[i];
+   }
+
+   return hasil/totalArg;
+}
+
+let a = rata2(1, 9);
+console.log(a); // 5
+
+let b = rata2(4, 8, 3, 7);
+console.log(b); // 5.5
+
+let c = rata2(14, 34, 17, 55, 98, 22, 26);
+console.log(c); // 38
+```
+
+Fitur yang disediakan oleh arguments object sangat praktis untuk membuat fungsi yang fleksibel, seperti contoh kita kali ini. Sebagai alternatif, hal yang sama bisa didapat menggunakan spread operator.
+
+### Spread Operator Untuk Arguments
+Spread operator (…) merupakan fitur baru di ECMAScript 6. Fungsi pertamanya sudah kita bahas di bab tentang operator, yakni untuk menggabungkan array. Fungsi lain dari operator ini adalah menggantikan peran arguments object
+```javascript
+function angka(...arg){
+   console.log(arg[0]); // 4
+   console.log(arg[1]); // 8
+   console.log(arg[2]); // 3
+   console.log(arg[3]); // 7
+}
+
+angka(4, 8, 3, 7)
+```
+
+Selain itu, kita juga bisa membuat argument biasa yang disambung dengan spread operator, seperti contoh berikut:
+```javascript
+function angka(a, b, ...sisa){
+   console.log(a); // 4
+   console.log(b); // 8
+   console.log(sisa); // Array [ 3, 7 ]
+}
+
+angka(4, 8, 3, 7);
+```
+
+Dengan menggunakan fitur arguments object maupun spread operator, kita bisa merancang function yang sangat fleksibel.
+
+## Variable Scope
+Variable scope adalah istilah tentang sejauh mana sebuah variabel masih dapat diakses. Di dalam JavaScipt terdapat global variable, yakni variabel yang bisa diakses darimana saja. Selain itu ada local variable, yakni variabel yang hanya bisa diakses di dalam ruang lingkup terbatas, seperti di dalam sebuah function.
+
+- variabel yg dideklarasikan tanpa keyword var, let atau const akan menjadi global variabel
+- membuat variabel dengan var, variabel tersebut hanya dibatasi di ruang function.
+- membuat variabel dengan let, variabel tersebut punya scope yg lebih sempit, yaitu dibatasi oleh tanda kurung kurawal yang biasanya digunakan untuk block kode program.       biasanya ada pada if else, loop dan function
+- semakin kecil ruang lingkup sebuah variabel, semakin bagus, agar kita terhindar dari kesalahan seperti diatas. Jika anda membuat kode program secara kolaborasi dengan       tim, kemungkinan variabel yang bentrok akan lebih besar. Menggunakan let sebagai pengganti var bisa memperkecil terjadinya masalah ini.
+
+## Javascript Hoisting
+JavaScript hoisting berkaitan dengan cara JavaScript mengeksekusi kode program, dimana JavaScript akan “mengangkat” pendefenisian variabel dan function ke baris paling atas kode program (tidak peduli berapa banyak kode program di bawahnya). Contoh kasus hoisting seperti kode program berikut:
+
+misal saya punya kode program seperti ini.
+```javascript
+function foo(){
+   console.log("a di dalam function: " + a); // undefined ???
+   var a = "Belajar JavaScript";
+}
+
+foo()
+```
+
+variabel ```a``` undefined karena yg terjadi di belakang layar seperti ini.
+```javascript
+function foo(){
+   var a;
+   console.log("a di dalam function: " + a); // undefined ???
+   a = "Belajar JavaScript";
+}
+```
+
+kalo menggunakan let, hasilnya seperti ini.
+```javascript
+function foo(){
+   console.log("a di dalam function: " + a); // Error !!!
+   let a = "Belajar JavaScript";
+}
+
+foo();
+```
+
+yang terjadi di belakang layar sama seperti menggunakan ```var``` bedanya menggunakan ```let``` hasilnya error. Error disini dianggap bagus bagi kita sebagai programmer, karena bisa mendapat informasi bahwa ada sesuatu yang salah. Jika menggunakan var memang tidak tampil error, tapi bisa sangat berbahaya karena kita tidak tau ada yang salah di kode program.
+
+Ini juga yang menjadi alasan banyak tutorial atau buku JavaScript terbaru yang menyarankan menggunakan let daripada var dalam pendefenisian variabel JavaScript. Namun memang
+perintah let baru tersedia di ECMAScript 6. Fitur hoisting ini sendiri hanya “mengangkat” pendeklarasian variabel saja, bukan defenisinya (variabel a belum berisi nilai apapun).
+
+**Cara paling efektif untuk menghindari efek JavaScript hoisting ini adalah, selalu mendefenisikan variabel di awal kode program.**
 
 
 
